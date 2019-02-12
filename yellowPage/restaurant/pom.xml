@@ -11,12 +11,12 @@
 
 
     <groupId>com.western.sa.team1</groupId>
-    <artifactId>hotel</artifactId>
+    <artifactId>restaurant</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>hotel</name>
-    <description>hotel service</description>
+    <name>restaurant</name>
+    <description>restaurant service</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -21,6 +21,7 @@
     <modules>
         <module>server</module>
         <module>hotel</module>
+        <module>restaurant</module>
     </modules>
 
     <properties>
@@ -35,6 +36,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <!-- sovle the jdk version-->
