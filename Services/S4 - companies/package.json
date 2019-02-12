@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "ibm-cloud-env": "^0.2.6",
+    "log4js": "^4.0.2",
+    "mysql": "^2.16.0",
+    "path": "^0.12.7"
+  }
+}
