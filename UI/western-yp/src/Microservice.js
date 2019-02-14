@@ -14,7 +14,7 @@ class Microservice extends Component {
                         onClick={() => window.location='/'}>
                         Back
                     </button>
-                    <p style={{width: '50%', display: 'inline-block'}}> Results for: {this.serviceMap[this.props.location.search.split("=")[1]-1]}</p>
+                    <p style={{width: '50%', display: 'inline-block'}}> Results for: {this.props.location.search.split("query=")[1]}</p>
                 </div>
             </div>
         );
