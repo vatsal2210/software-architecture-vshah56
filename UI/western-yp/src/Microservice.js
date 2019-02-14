@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 
 class Microservice extends Component {
+    constructor(props){
+        super(props);
+        this.serviceMap = ['Ski Resorts', 'Restaurants', 'Museums', 'Fortune Companies']
+    }
+
     render() {
         return (
             <div className="App">
-                <p> hello world!</p>
+                <div style={{height: '20vh', width: '100%'}}>
+                    <button className="button" style={{display: 'inline-block', left:'5px'}}
+                        onClick={() => window.location='/'}>
+                        Back
+                    </button>
+                    <p style={{width: '50%', display: 'inline-block'}}> Results for: {this.serviceMap[this.props.location.search.split("=")[1]-1]}</p>
+                </div>
             </div>
         );
     }
