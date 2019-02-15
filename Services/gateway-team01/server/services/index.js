@@ -5,6 +5,23 @@ var IBMCloudEnv = require('ibm-cloud-env');
 var serviceManager = require('./service-manager');
 IBMCloudEnv.init();
 
-module.exports = function(app){
+module.exports = function (app) {
+
+    app.get('/testing', (req, res) => {
+        res.send('Gateway working');
+    });
+
+    app.get('/list', (req, res) => {
+        const serviceList = [{
+            "Ski Resort": 1,
+            "Restaurants": 1,
+            "Museums": 1,
+            "Fortune 500 companies": 1
+        }];
+        res.send({
+            code: 200,
+            services: serviceList
+        });
+    });
 
 };
