@@ -15,8 +15,8 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>hotel</name>
-    <description>hotel service</description>
+    <name>skiresort</name>
+    <description>Ski Resort Service</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
