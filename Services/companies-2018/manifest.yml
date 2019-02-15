@@ -5,6 +5,6 @@ applications:
   name: companies2018
   buildpack: sdk-for-nodejs
   command: npm start
-  memory: 256MB
+  memory: 128MB
   domain: mybluemix.net
   host: companies-2018

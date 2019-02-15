@@ -7,21 +7,91 @@ IBMCloudEnv.init();
 
 module.exports = function (app) {
 
+    const services = ["skiResort", "restaurants", "museums", "fortuneCompanies"];
+    const skiResortServiceURL = '';
+    const restaurantsServiceURL = '';
+    const museumsServiceURL = '';
+    const fortuneCompaniesServiceURL = '';
+    const registryURL = "";
+
+    var serviceList = [{
+        "skiResort": 1,
+        "restaurants": 1,
+        "museums": 1,
+        "fortuneCompanies": 1
+    }];
+
     app.get('/testing', (req, res) => {
         res.send('Gateway working');
     });
 
+    /* Dynamic dropdown list */
     app.get('/list', (req, res) => {
-        const serviceList = [{
-            "Ski Resort": 1,
-            "Restaurants": 1,
-            "Museums": 1,
-            "Fortune 500 companies": 1
-        }];
         res.send({
             code: 200,
-            services: serviceList
+            message: serviceList
         });
     });
+
+    /* Search details from selected services */
+    app.post('/search', (req, res) => {
+        const serviceName = req.body.serviceName;
+        const searchParam = req.body.searchParam;
+
+        if (serviceName == '' || serviceName == undefined) {
+            res.send({
+                code: 200,
+                message: 'Please select service Name'
+            });
+        } else if (services.includes(serviceName)) {
+            res.send({
+                code: 200,
+                message: 'Please select valid service'
+            });
+        } else if (searchParam == "" || searchParam == undefined) {
+            res.send({
+                code: 200,
+                message: 'Enter valid search name'
+            });
+        } else {
+            const urls = [];
+
+            if (serviceName.includes("skiResort")) {
+                urls.push(skiResortServiceURL);
+            }
+
+            if (serviceName.includes("restaurants")) {
+                urls.push(restaurantsServiceURL);
+            }
+            if (serviceName.includes("museums")) {
+                urls.push(museumsServiceURL);
+            }
+            if (serviceName.includes("fortuneCompanies")) {
+                urls.push(fortuneCompanies);
+            }
+
+            Promise.all(urls.map(url =>
+                    fetch(url)
+                    .then(checkStatus)
+                    .then(parseJSON)
+                    .catch(logError)
+                ))
+                .then(data => {
+                    return data;
+                })
+        }
+    });
+
+    /* Check service status */
+    checkServicesStatus = function () {
+        fetch(registryURL)
+            .then(json => serviceList.push(json))
+    }
+
+
+    /* Check status of services */
+    setInterval({
+        // checkServicesStatus();
+    }, 5000);
 
 };

@@ -15,13 +15,13 @@ module.exports = function (app) {
     });
 
     app.get('/companies/:id', (req, res) => {
-        if (!req.params.id == "123456789") {
+        if (!req.params.id !== "123456789") {
             return res.json({
                 code: 200,
                 message: 'Invalid request'
             });
         } else {
-            return res(companiesDB);
+            return res.send(companiesDB);
             /* const findData = "select company, rank, state_l, founded, industry, metro, website FROM `software-architecture-s4`.companies order by rank;";
             db.query(findData, (err, data) => {
                 if (err) {
