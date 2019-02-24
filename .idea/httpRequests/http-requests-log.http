@@ -1,0 +1,44 @@
+GET https://gateway-team01.mybluemix.net/list
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-02-24T014722.200.json
+
+###
+
+POST http://localhost:3000/list
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-02-24T011759.404.html
+
+###
+
+GET https://gateway-team01.mybluemix.net/list
+
+<> 2019-02-24T011559.200.json
+
+###
+
+POST https://gateway-team01.mybluemix.net/list
+
+<> 2019-02-24T011538.200.html
+
+###
+
+POST https://gateway-team01.mybluemix.net/list
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-02-24T011521.200.html
+
+###
+
+POST https://gateway-team01.mybluemix.net/list
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-02-24T011501.200.html
+
+###
+

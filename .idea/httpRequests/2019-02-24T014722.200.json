@@ -1,0 +1,11 @@
+{
+  "code": 200,
+  "message": [
+    {
+      "skiResort": 1,
+      "restaurants": 1,
+      "museums": 1,
+      "fortuneCompanies": 1
+    }
+  ]
+}

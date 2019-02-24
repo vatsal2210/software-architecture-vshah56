@@ -10,12 +10,7 @@ import 'primeicons/primeicons.css';
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.dropdownItems = [
-            {label: 'Ski Resorts', value: '1'},
-            {label: 'Restaurants', value: '2'},
-            {label: 'Museums', value: '3'},
-            {label: 'Fortune Companies', value: '4'}
-        ];
+        this.dropdownItems = [];
 
         this.state = {
             items: [],
@@ -23,10 +18,42 @@ class Home extends React.Component {
         }
     }
 
+    componentDidMount() {
+        fetch('https://gateway-team01.mybluemix.net/list', {
+            mode: 'cors',
+            headers: {'Access-Control-Allow-Origin':'*'},
+            crossDomain:true,
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                let items = [];
+                if (data.message){
+                    if (data.message[0].skiResort === 1){
+                        items.push({label: 'Ski Resorts', value: '1'});
+                    }
+                    if (data.message[0].restaurants === 1){
+                        items.push({label: 'Restaurants', value: '2'});
+                    }
+                    if (data.message[0].museums === 1){
+                        items.push({label: 'Museums', value: '3'});
+                    }
+                    if (data.message[0].fortuneCompanies === 1){
+                        items.push({label: 'Fortune Companies', value: '4'});
+                    }
+                }
+
+                items.forEach((item) => {
+                    this.dropdownItems.push(item);
+                });
+
+                this.forceUpdate();
+
+            }).catch((err) => console.log("error fetching dropdown: ", err));
+    }
+
     selectedItemTemplate(value){
         let dropdownItems = ['Ski Resorts', 'Restaurants', 'Museums', 'Fortune Companies' ];
         if (value){
-            console.log(dropdownItems);
             return <span>{dropdownItems[value-1]}<br/></span>
         }
         else {
