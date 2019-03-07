@@ -13,15 +13,25 @@ const express = require('express');
 const log4js = require('log4js');
 const localConfig = require('./config/local.json');
 const path = require('path');
+const cors = require("cors");
 
 const logger = log4js.getLogger(appName);
 logger.level = process.env.LOG_LEVEL || 'info'
 const app = express();
 const server = http.createServer(app);
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(log4js.connectLogger(logger, {
   level: logger.level
 }));
+
+app.use(cors());
+
 const serviceManager = require('./services/service-manager');
 require('./services/index')(app);
 require('./routers/index')(app, server);

@@ -4,16 +4,18 @@
 var IBMCloudEnv = require('ibm-cloud-env');
 var serviceManager = require('./service-manager');
 IBMCloudEnv.init();
+const fetch = require('node-fetch');
 
 module.exports = function (app) {
 
     const services = ["skiResort", "restaurants", "museums", "fortuneCompanies"];
+    const registryURL = "https://ypgateway.mybluemix.net/getMicroServicesList";
+
     const skiResortServiceURL = '';
     const restaurantsServiceURL = '';
     const museumsServiceURL = '';
     const fortuneCompaniesServiceURL = '';
-    const registryURL = "";
-
+    var serviceList = [];
     var serviceList = [{
         "skiResort": 1,
         "restaurants": 1,
@@ -83,15 +85,17 @@ module.exports = function (app) {
     });
 
     /* Check service status */
-    checkServicesStatus = function () {
+    var checkServicesStatus = function () {
+        serviceList = [];
         fetch(registryURL)
             .then(json => serviceList.push(json))
     }
 
+    // checkServicesStatus();
 
     /* Check status of services */
-    setInterval({
-        // checkServicesStatus();
-    }, 5000);
+    // setInterval(function () {
+    //     checkServicesStatus();
+    // }, 60000);
 
 };
