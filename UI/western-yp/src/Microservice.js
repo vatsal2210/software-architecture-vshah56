@@ -12,7 +12,13 @@ class Microservice extends Component {
             method: 'POST',
             mode: 'cors',
             headers: {'Access-Control-Allow-Origin':'*'},
-            crossDomain:true
+            crossDomain:true,
+            body: {
+                serviceName: 'sdasd',
+                searchParam: 'asdasd',
+
+
+            }
         }).then((res) => {
             return res.json()
         }).then((res) => {

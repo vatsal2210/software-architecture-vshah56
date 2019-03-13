@@ -33,6 +33,7 @@ class Home extends React.Component {
             .then((res) => res.json())
             .then((data) => {
                 let items = [];
+                console.log("Received dropdown items: ", data.message);
                 if (data.message){
                     if (data.message[0].skiResort === 1){
                         items.push({label: 'Ski Resorts', value: 'skiResort'});

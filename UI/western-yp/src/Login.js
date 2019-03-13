@@ -1,35 +1,68 @@
 import React from 'react';
 import {InputText} from 'primereact/inputtext';
 import {Button} from 'primereact/button';
+import {Password} from 'primereact/password';
+import './Register.css';
 
 class Login extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            username: '',
-            password: ''
-        }
+            email: '',
+            password: '',
+            invalidemail: false,
+            invalidpassword: false
+        };
+
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
-    sendRegisterRequest(){
+    handleLogin(){
+        this.setState({
+            invalidemail: this.state.email.length === 0 || this.state.email.indexOf('@') === -1,
+            invalidpassword: this.state.password.length <= 6
+        }, () => {
+            console.log("submitting...");
 
+        });
     }
 
     render(){
         return <div style={{margin: '0 auto', display: 'block'}}>
             <h1>Login</h1>
-            <div style={{margin: 0, position: 'absolute', top: '28%', left: '50%', transform: 'translate(-50%, -50%)'}}>
-                <InputText
-                    placeholder={"Username"}
-                    value={this.state.username}
-                    onChange={(e) => this.setState({username: e.target.value})}
-                /><br/><br/>
-                <InputText
-                    placeholder={"Password"}
-                    value={this.state.password}
-                    onChange={(e) => this.setState({password: e.target.value})}
-                /><br/><br/>
-                <Button label={"Submit"} />
+            <div style={{top: 0, bottom: 0, left: 0, right: 0, margin: 'auto',}}>
+                <div>
+                    { this.state.invalidemail && (this.state.email.length === 0 || this.state.email.indexOf('@') === -1) ?
+                        <p className={"register-invalid"}>Please enter a valid email</p>
+                        : null }
+                    <div className={'register-row'}>
+                        <label className={'register-label'}>Email: </label>
+                        <InputText
+                            placeholder={"Email"}
+                            value={this.state.email}
+                            onChange={(e) => this.setState({email: e.target.value})}
+                            className={'register-input'}
+                        />
+                    </div>
+
+                    { this.state.invalidpassword && this.state.password.length === 0 ?
+                        <p className={"register-invalid"}>Please enter a password</p>
+                        : null }
+                    <div className={'register-row'}>
+                        <label className={'register-label'}>Password: </label>
+                        <Password
+                            placeholder={"Password"}
+                            value={this.state.password}
+                            onChange={(e) => this.setState({password: e.target.value})}
+                            className={'register-input'}
+                        />
+                    </div>
+
+
+                    <br/>
+
+                    <Button label={"Submit"} onClick={this.handleLogin}/>
+                </div>
             </div>
         </div>
     }

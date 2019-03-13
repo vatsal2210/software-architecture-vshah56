@@ -20,13 +20,13 @@ class App extends Component {
             </div>
 
             <div style={{margin: 'auto 0px'}}>
-                <a onClick={() => window.location = '/login'} style={{color: 'white', cursor: 'pointer'}}>
+                <span onClick={() => window.location = '/login'} style={{color: 'white', cursor: 'pointer'}}>
                     Login
-                </a>
+                </span>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <a onClick={() => window.location = '/register'} style={{color: 'white', cursor: 'pointer'}}>
+                <span onClick={() => window.location = '/register'} style={{color: 'white', cursor: 'pointer'}}>
                     Register
-                </a>
+                </span>
             </div>
         </header>
         <Router>
