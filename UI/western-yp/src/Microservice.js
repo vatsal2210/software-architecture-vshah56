@@ -6,6 +6,20 @@ class Microservice extends Component {
         this.serviceMap = ['Ski Resorts', 'Restaurants', 'Museums', 'Fortune Companies']
     }
 
+    componentDidMount() {
+        console.log("calling https://gateway-team01.mybluemix.net/search" + this.props.location.search);
+        fetch('https://gateway-team01.mybluemix.net/search' + this.props.location.search, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {'Access-Control-Allow-Origin':'*'},
+            crossDomain:true
+        }).then((res) => {
+            return res.json()
+        }).then((res) => {
+            console.log("res = ", res);
+        }).catch((err) => console.log(err));
+    }
+
     render() {
         return (
             <div className="App">
@@ -14,8 +28,10 @@ class Microservice extends Component {
                         onClick={() => window.location='/'}>
                         Back
                     </button>
-                    <p style={{width: '50%', display: 'inline-block'}}> Results for: {this.props.location.search.split("query=")[1]}</p>
+                    <p style={{width: '50%', display: 'inline-block'}}> Results for: {this.props.location.search}</p>
                 </div>
+
+
             </div>
         );
     }

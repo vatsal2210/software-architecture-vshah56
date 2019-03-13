@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from 'primereact/button';
 import {InputText} from "primereact/inputtext";
-import {MultiSelect} from 'primereact/multiselect';
+import {Dropdown} from 'primereact/dropdown';
 
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -13,12 +13,18 @@ class Home extends React.Component {
         this.dropdownItems = [];
 
         this.state = {
-            items: [],
-            query: ''
-        }
+            service: '',
+            query: '',
+            skiResortCountry: '',
+            skiResortMinPrice: '',
+            skiResortMaxPrice: ''
+        };
+
+        this.handleSearchClick = this.handleSearchClick.bind(this);
     }
 
     componentDidMount() {
+        console.log("Fetching dropdown items...");
         fetch('https://gateway-team01.mybluemix.net/list', {
             mode: 'cors',
             headers: {'Access-Control-Allow-Origin':'*'},
@@ -29,16 +35,16 @@ class Home extends React.Component {
                 let items = [];
                 if (data.message){
                     if (data.message[0].skiResort === 1){
-                        items.push({label: 'Ski Resorts', value: '1'});
+                        items.push({label: 'Ski Resorts', value: 'skiResort'});
                     }
                     if (data.message[0].restaurants === 1){
-                        items.push({label: 'Restaurants', value: '2'});
+                        items.push({label: 'Restaurants', value: 'restaurant'});
                     }
                     if (data.message[0].museums === 1){
-                        items.push({label: 'Museums', value: '3'});
+                        items.push({label: 'Museums', value: 'museums'});
                     }
                     if (data.message[0].fortuneCompanies === 1){
-                        items.push({label: 'Fortune Companies', value: '4'});
+                        items.push({label: 'Fortune Companies', value: 'fortuneCompanies'});
                     }
                 }
 
@@ -51,15 +57,17 @@ class Home extends React.Component {
             }).catch((err) => console.log("error fetching dropdown: ", err));
     }
 
-    selectedItemTemplate(value){
-        let dropdownItems = ['Ski Resorts', 'Restaurants', 'Museums', 'Fortune Companies' ];
-        if (value){
-            return <span>{dropdownItems[value-1]}<br/></span>
+    handleSearchClick(){
+        let additionalQueries = "";
+        if (this.state.service === 'skiResorts'){
+            additionalQueries = additionalQueries.concat("&country=" + this.state.skiResortCountry,
+                "&pricerange=" + this.state.skiResortMinPrice + "-" + this.state.skiResortMaxPrice);
         }
-        else {
-            return <span className="my-multiselected-empty-token">Select service...</span>
-        }
+
+        window.location='/microservice?serviceName=' + this.state.service +
+            '&searchParam=' + this.state.query + additionalQueries;
     }
+
 
     render(){
         return (
@@ -69,12 +77,14 @@ class Home extends React.Component {
                     <div className="p-grid p-fluid">
                         <div className="p-col-12 p-md-8">
                             <div className="p-inputgroup">
-                                <MultiSelect
+                                <Dropdown
                                     options={this.dropdownItems}
-                                    value={this.state.items}
-                                    onChange={(e) => this.setState({items: e.value})}
+                                    value={this.state.service}
+                                    onChange={(e) => {
+                                        this.setState({service: e.value});
+                                        console.log("service set to ", e.value);
+                                    }}
                                     placeholder="Select service..." style={{maxWidth: '35%'}}
-                                    selectedItemTemplate={this.selectedItemTemplate}
                                 />
                                 <InputText
                                     placeholder="Keywords..."
@@ -83,9 +93,34 @@ class Home extends React.Component {
                                 />
                                 <Button
                                     label="Search"
-                                    onClick={() => window.location='/microservice?s=' + this.state.items + '&query=' + this.state.query}
+                                    disabled={this.state.service === ''}
+                                    onClick={this.handleSearchClick}
                                 />
                             </div>
+                            {
+                                this.state.service === 'skiResort' ?
+                                    <span>
+                                        <InputText
+                                            placeholder="Country..."
+                                            value={this.state.skiResortCountry}
+                                            onChange={(e) => this.setState({skiResortCountry: e.target.value})}
+                                            style={{width: '30%', marginLeft: '25px'}}
+                                        />
+                                        <InputText
+                                            placeholder="Min. Price $"
+                                            value={this.state.skiResortMinPrice}
+                                            onChange={(e) => this.setState({skiResortMinPrice: e.target.value})}
+                                            style={{width: '18%'}}
+                                        />
+                                        <InputText
+                                            placeholder="Max. Price $"
+                                            value={this.state.skiResortMaxPrice}
+                                            onChange={(e) => this.setState({skiResortMaxPrice: e.target.value})}
+                                            style={{width: '18%'}}
+                                        />
+                                    </span>
+                                    : null
+                            }
                         </div>
                     </div>
                 </div>
