@@ -16,18 +16,16 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 // database connection
-require("./config/database");
-// mongoose.connect(localConfig.dbUrl, {
-//   useNewUrlParser: true,
-//   useCreateIndex: true,
-// }, err => {
-//   if (err) {
-//     console.log("Database connection Error: " + err);
-//     return console.log(err);
-//   } else {
-//     console.log("Connect to MongoDB");
-//   }
-// });
+// require("./config/database");
+mongoose.connect(localConfig.dbUrl, err => {
+  if (err) {
+    console.log("Database connection Error: " + err);
+    return console.log(err);
+  } else {
+    console.log("Connect to MongoDB");
+  }
+});
+
 
 const logger = log4js.getLogger(appName);
 logger.level = process.env.LOG_LEVEL || 'info'
@@ -56,6 +54,29 @@ app.use(function (req, res, next) {
 
 app.use(function (err, req, res, next) {
   res.sendFile(path.join(__dirname, '../public', '500.html'));
+});
+
+
+const Eureka = require('eureka-js-client').Eureka;
+ 
+// example configuration
+const client = new Eureka({
+  // application instance information
+  instance: {
+    app: 'jqservice',
+    hostName: 'localhost',
+    ipAddr: '127.0.0.1',
+    port: 8080,
+    vipAddress: 'jq.test.something.com',
+    dataCenterInfo: {
+      name: 'MyOwn',
+    },
+  },
+  eureka: {
+    // eureka server host / port
+    host: '192.168.99.100',
+    port: 32768,
+  },
 });
 
 module.exports = server;

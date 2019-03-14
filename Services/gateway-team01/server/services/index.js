@@ -5,34 +5,66 @@ var IBMCloudEnv = require('ibm-cloud-env');
 var serviceManager = require('./service-manager');
 IBMCloudEnv.init();
 const fetch = require('node-fetch');
+const axios = require('axios');
 
 module.exports = function (app) {
 
-    const services = ["skiResort", "restaurants", "museums", "fortuneCompanies"];
+    const services = ["skiResort", "restaurants", "museums", "companies"];
     const registryURL = "https://ypgateway.mybluemix.net/getMicroServicesList";
 
-    const skiResortServiceURL = '';
+    const skiResortServiceURL = 'https://ypgateway.mybluemix.net:443/ski/resort/search';
     const restaurantsServiceURL = '';
     const museumsServiceURL = '';
-    const fortuneCompaniesServiceURL = '';
+    const companies = '';
     var serviceList = [];
-    var serviceList = [{
-        "skiResort": 1,
-        "restaurants": 1,
-        "museums": 1,
-        "fortuneCompanies": 1
-    }];
+    // var serviceList = [{
+    //     "skiResort": 1,
+    //     "restaurants": 1,
+    //     "museums": 1,
+    //     "fortuneCompanies": 1
+    // }];
 
     app.get('/testing', (req, res) => {
         res.send('Gateway working');
     });
 
+    /* Check service status */
+    var checkServicesStatus = function () {
+        console.log('checkServicesStatus called');
+        axios.get(registryURL)
+            .then(function (response) {
+                // handle success
+                console.log('checkServicesStatus res', response);
+                return res.send(response);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log('checkServicesStatus error', error);
+                return res.send({
+                    code: 500,
+                    message: 'Something went wrong. Try again!'
+                });
+            })
+    }
+
     /* Dynamic dropdown list */
     app.get('/list', (req, res) => {
-        res.send({
-            code: 200,
-            message: serviceList
-        });
+        console.log('Get list of APIs for a dropdown');
+        // checkServicesStatus();
+        axios.get(registryURL)
+            .then(function (response) {
+                // handle success
+                console.log('checkServicesStatus res', response);
+                return res.send(JSON.stringify(response));
+            })
+            .catch(function (error) {
+                // handle error
+                console.log('checkServicesStatus error', error);
+                return res.send({
+                    code: 500,
+                    message: 'Something went wrong. Try again!'
+                });
+            })
     });
 
     /* Search details from selected services */
@@ -45,7 +77,7 @@ module.exports = function (app) {
                 code: 200,
                 message: 'Please select service Name'
             });
-        } else if (services.includes(serviceName)) {
+        } else if (!services.includes(serviceName)) {
             res.send({
                 code: 200,
                 message: 'Please select valid service'
@@ -56,46 +88,44 @@ module.exports = function (app) {
                 message: 'Enter valid search name'
             });
         } else {
-            const urls = [];
-
+            // Found service name
+            var url;
             if (serviceName.includes("skiResort")) {
-                urls.push(skiResortServiceURL);
+                url = skiResortServiceURL;
             }
 
             if (serviceName.includes("restaurants")) {
-                urls.push(restaurantsServiceURL);
-            }
-            if (serviceName.includes("museums")) {
-                urls.push(museumsServiceURL);
-            }
-            if (serviceName.includes("fortuneCompanies")) {
-                urls.push(fortuneCompanies);
+                url = restaurantsServiceURL;
             }
 
-            Promise.all(urls.map(url =>
-                    fetch(url)
-                    .then(checkStatus)
-                    .then(parseJSON)
-                    .catch(logError)
-                ))
-                .then(data => {
-                    return data;
+            if (serviceName.includes("museums")) {
+                url = museumsServiceURL;
+            }
+
+            if (serviceName.includes("fortuneCompanies")) {
+                url = fortuneCompanies;
+            }
+
+            console.log('url ', url);
+            axios.post(url, {
+                    query: searchParam
                 })
+                .then(function (response) {
+                    console.log('/search', response);
+                    return res.send(response);
+                })
+                .catch(function (error) {
+                    console.log('/search error', error);
+                    return res.send(error);
+                });
         }
     });
 
-    /* Check service status */
-    var checkServicesStatus = function () {
-        serviceList = [];
-        fetch(registryURL)
-            .then(json => serviceList.push(json))
-    }
-
     // checkServicesStatus();
 
-    /* Check status of services */
+    // /* Check status of services */
     // setInterval(function () {
     //     checkServicesStatus();
-    // }, 60000);
+    // }, 10000);
 
 };

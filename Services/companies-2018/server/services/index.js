@@ -5,46 +5,68 @@ var IBMCloudEnv = require('ibm-cloud-env');
 var serviceManager = require('./service-manager');
 IBMCloudEnv.init();
 
-const db = require("../config/database");
-const companiesDB = require('../config/companies.json');
+const mongoose = require('mongoose');
+//const Companies = mongoose.model('Companies', CompaniesSchema);;
+const Companies = require('../models/companies');
+
 // var jsonContent = JSON.parse(companiesDB);
 
 module.exports = function (app) {
-    app.get('/test', (req, res) => {
-        res.send("working");
-    });
-
-    app.get('/companies/:id', (req, res) => {
-        if (!req.params.id !== "123456789") {
+    app.get('/companies/list/:id', (req, res) => {
+        console.log('Check all list');
+        if (req.params.id !== "123456789") {
             return res.json({
                 code: 200,
                 message: 'Invalid request'
             });
         } else {
-            return res.send(companiesDB);
-            /* const findData = "select company, rank, state_l, founded, industry, metro, website FROM `software-architecture-s4`.companies order by rank;";
-            db.query(findData, (err, data) => {
-                if (err) {
-                    return res.json({
-                        code: 400,
-                        message: 'No details found'
-                    });
-                } else {
-                    if (data.length > 0) {
-                        return res.json({
-                            code: 200,
-                            status: 1,
-                            message: data
+            // return res.send(companiesDB);
+            console.log('Valid request to find list');
+            Companies.find().limit(200),
+                function (err, data) {
+                    if (err) {
+                        console.log('err found ', err);
+                        return res.send({
+                            code: 500,
+                            message: 'Something went wrong. Try again!'
                         });
                     } else {
-                        return res.json({
+                        console.log('Found collection details ', data);
+                        return res.send({
                             code: 200,
-                            status: 1,
-                            message: 'No details found'
+                            message: data
                         });
                     }
                 }
-            }); */
         }
     });
-};
+
+    // Request https://companies-2018.mybluemix.net/companies/find?company=test1&state=test2&founded=2019
+    app.post('/companies/find', (req, res) => {
+        const company = req.body.company;
+        const state = req.body.state;
+        const founded = req.body.founded;
+
+        console.log('company ', req.body.company);
+        console.log('state ', req.body.state);
+        console.log('founded ', req.body.founded);
+
+        Companies.find({
+                company: company,
+                state: state,
+                founded: founded
+            }),
+            function (err, data) {
+                if (err) {
+                    console.log('err found ', err);
+                    return res.send({
+                        code: 500,
+                        message: 'Something went wrong. Try again!'
+                    });
+                } else {
+                    console.log('Found collection details ', data);
+                    return res.send(JSON.stringify(data));
+                }
+            }
+    });
+}
