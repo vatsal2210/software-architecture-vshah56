@@ -32,15 +32,21 @@ class Register extends React.Component {
             invalidconfirmpassword: this.state.invalidpassword || this.state.confirmpassword.length === 0 ||
                 this.state.password !== this.state.confirmpassword
         }, () => {
-            console.log("submitting...");
-
+            if (!this.state.invalidemail &&
+                !this.state.invalidfirstname &&
+                !this.state.invalidlastname &&
+                !this.state.invalidpassword &&
+                !this.state.invalidconfirmpassword
+            ){
+                console.log("submitting...");
+            }
         });
     }
 
     render(){
         return <div style={{margin: '0 auto', display: 'block'}}>
             <h1>Register</h1>
-            <div style={{top: 0, bottom: 0, left: 0, right: 0, margin: 'auto',}}>
+            <div style={{top: 0, bottom: 0, left: 0, right: 0, margin: 'auto'}}>
                 <div>
                     { this.state.invalidemail && (this.state.email.length === 0 || this.state.email.indexOf('@') === -1) ?
                         <p className={"register-invalid"}>Please enter a valid email</p>
@@ -80,7 +86,7 @@ class Register extends React.Component {
                     </div>
 
                     { this.state.invalidpassword && this.state.password.length <= 6? <p className={"register-invalid-password"}>
-                        Please enter a valid password (must be more than 6 characters)
+                        Please enter a valid password (> than 6 characters)
                     </p> : null }
                     <div className={'register-row'}>
                         <label className={'register-label'}>Password: </label>
@@ -92,11 +98,12 @@ class Register extends React.Component {
                         />
                     </div>
 
-                    { this.state.invalidconfirmpassword && (this.state.confirmpassword.length === 0 || this.state.password !== this.state.confirmpassword) ? <p className={"register-invalid-confirm"}>
+                    { this.state.invalidconfirmpassword && (this.state.confirmpassword.length === 0 ||
+                        this.state.password !== this.state.confirmpassword) ? <p className={"register-invalid-confirm"}>
                         Please make sure the passwords match</p>
                         : null }
                     <div className={'register-row'}>
-                        <label className={'register-label'}>Confirm: </label>
+                        <label className={'register-label'}>Confirm Password: </label>
                         <Password
                             placeholder={"Confirm password"}
                             value={this.state.confirmpassword}

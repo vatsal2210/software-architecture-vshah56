@@ -25,9 +25,12 @@ class Home extends React.Component {
 
     componentDidMount() {
         console.log("Fetching dropdown items...");
+        this.dropdownItems.push({label: 'Ski Resorts', value: 'skiResort'});
+
+
         fetch('https://gateway-team01.mybluemix.net/list', {
             mode: 'cors',
-            headers: {'Access-Control-Allow-Origin':'*'},
+            headers: {'Access-Control-Allow-Origin': '*'},
             crossDomain:true,
             })
             .then((res) => res.json())
@@ -60,10 +63,11 @@ class Home extends React.Component {
 
     handleSearchClick(){
         let additionalQueries = "";
-        if (this.state.service === 'skiResorts'){
+        if (this.state.service === 'skiResort'){
             additionalQueries = additionalQueries.concat("&country=" + this.state.skiResortCountry,
                 "&pricerange=" + this.state.skiResortMinPrice + "-" + this.state.skiResortMaxPrice);
         }
+        console.log("additional queries = ", additionalQueries);
 
         window.location='/microservice?serviceName=' + this.state.service +
             '&searchParam=' + this.state.query + additionalQueries;
@@ -112,12 +116,14 @@ class Home extends React.Component {
                                             value={this.state.skiResortMinPrice}
                                             onChange={(e) => this.setState({skiResortMinPrice: e.target.value})}
                                             style={{width: '18%'}}
+                                            keyfilter={'int'}
                                         />
                                         <InputText
                                             placeholder="Max. Price $"
                                             value={this.state.skiResortMaxPrice}
                                             onChange={(e) => this.setState({skiResortMaxPrice: e.target.value})}
                                             style={{width: '18%'}}
+                                            keyfilter={'int'}
                                         />
                                     </span>
                                     : null

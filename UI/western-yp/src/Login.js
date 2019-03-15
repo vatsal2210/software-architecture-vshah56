@@ -22,8 +22,9 @@ class Login extends React.Component {
             invalidemail: this.state.email.length === 0 || this.state.email.indexOf('@') === -1,
             invalidpassword: this.state.password.length <= 6
         }, () => {
-            console.log("submitting...");
-
+            if (!this.state.invalidemail && !this.state.invalidpassword){
+                console.log("submitting...");
+            }
         });
     }
 
