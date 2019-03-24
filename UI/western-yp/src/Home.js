@@ -15,9 +15,22 @@ class Home extends React.Component {
         this.state = {
             service: '',
             query: '',
-            skiResortCountry: '',
+            // ski resort
+            skiResortCountry: '', // query = resortname
             skiResortMinPrice: '',
-            skiResortMaxPrice: ''
+            skiResortMaxPrice: '',
+            // companies
+            companiesState: '',
+            companiesFounded: '',  // query = company
+            // museum
+            museumState: '',
+            museumAddress: '',
+            museumCity: '',  // query = museumName
+            // restaurants
+            restaurantState: '',
+            restaurantAddress: '',
+            restaurantCity: '',  // query = restaurantName
+            restaurantType: ''
         };
 
         this.handleSearchClick = this.handleSearchClick.bind(this);
@@ -25,30 +38,29 @@ class Home extends React.Component {
 
     componentDidMount() {
         console.log("Fetching dropdown items...");
-        this.dropdownItems.push({label: 'Ski Resorts', value: 'skiResort'});
-
-
-        fetch('https://gateway-team01.mybluemix.net/list', {
+        fetch('http://western01-gateway-pipeline.mybluemix.net/service/list', {
             mode: 'cors',
             headers: {'Access-Control-Allow-Origin': '*'},
             crossDomain:true,
+            method: 'GET'
             })
             .then((res) => res.json())
             .then((data) => {
+                console.log("data = ", data);
                 let items = [];
-                console.log("Received dropdown items: ", data.message);
-                if (data.message){
-                    if (data.message[0].skiResort === 1){
+                console.log("Received dropdown items: ", data.responseBody);
+                if (data.responseBody){
+                    if (data.responseBody.YP_SKIRESORT === 1){
                         items.push({label: 'Ski Resorts', value: 'skiResort'});
                     }
-                    if (data.message[0].restaurants === 1){
-                        items.push({label: 'Restaurants', value: 'restaurant'});
+                    if (data.responseBody.YP_RESTAURANT === 1){
+                        items.push({label: 'Restaurants', value: 'restaurants'});
                     }
-                    if (data.message[0].museums === 1){
+                    if (data.responseBody.YP_MUSEUM === 1){
                         items.push({label: 'Museums', value: 'museums'});
                     }
-                    if (data.message[0].fortuneCompanies === 1){
-                        items.push({label: 'Fortune Companies', value: 'fortuneCompanies'});
+                    if (data.responseBody.YP_GATEWAY === 1){
+                        items.push({label: 'Fortune Companies', value: 'companies'});
                     }
                 }
 
@@ -62,15 +74,31 @@ class Home extends React.Component {
     }
 
     handleSearchClick(){
+        // serviceName:  ["skiResort", "restaurants", "museums", "companies"]
         let additionalQueries = "";
         if (this.state.service === 'skiResort'){
-            additionalQueries = additionalQueries.concat("&country=" + this.state.skiResortCountry,
-                "&pricerange=" + this.state.skiResortMinPrice + "-" + this.state.skiResortMaxPrice);
+            additionalQueries = additionalQueries.concat("country=" + this.state.skiResortCountry,
+                "&price=" + this.state.skiResortMinPrice + "-" + this.state.skiResortMaxPrice + "&resortname=" +
+                this.state.query);
         }
-        console.log("additional queries = ", additionalQueries);
+        else if (this.state.service === 'restaurants'){
+            additionalQueries = additionalQueries.concat("restaurantName=" + this.state.query + "&state=" +
+                this.state.restaurantState + "&city=" + this.state.restaurantCity + "&address=" + this.state.restaurantAddress
+                + "&type=" + this.state.restaurantType);
+        }
+        else if (this.state.service === 'museums'){
+            additionalQueries = additionalQueries.concat("museumName=" + this.state.query + "&state=" + this.state.museumState +
+            "&city=" + this.state.museumCity + "&address=" + this.state.museumCity);
+        }
+        else if (this.state.service === 'companies'){
+            additionalQueries = additionalQueries.concat("companiesState=" + this.state.companiesState +
+                "&companiesFounded=" + this.state.companiesFounded + "&company=" + this.state.query);
+        }
+
+        console.log("searchParam = ", additionalQueries);
 
         window.location='/microservice?serviceName=' + this.state.service +
-            '&searchParam=' + this.state.query + additionalQueries;
+            '&' + additionalQueries;
     }
 
 
@@ -92,7 +120,7 @@ class Home extends React.Component {
                                     placeholder="Select service..." style={{maxWidth: '35%'}}
                                 />
                                 <InputText
-                                    placeholder="Keywords..."
+                                    placeholder={this.state.service === '' ? "Keywords..." : "Name..."}
                                     value={this.state.query}
                                     onChange={(e) => this.setState({query: e.target.value})}
                                 />
@@ -128,6 +156,79 @@ class Home extends React.Component {
                                     </span>
                                     : null
                             }
+                            {
+                                this.state.service === 'companies' ?
+                                    <span>
+                                        <InputText
+                                            placeholder="State"
+                                            value={this.state.companiesState}
+                                            onChange={(e) => this.setState({companiesState: e.target.value})}
+                                            style={{width: '30%', marginLeft: '50px'}}
+                                        />
+                                        <InputText
+                                           placeholder="Founded (year)"
+                                           value={this.state.companiesFounded}
+                                           onChange={(e) => this.setState({companiesFounded: e.target.value})}
+                                           style={{width: '30%', marginLeft: '0px'}}
+                                        />
+                                    </span>
+                                    : null
+                            }
+                            {
+                                this.state.service === 'museums' ?
+                                    <span>
+                                        <InputText
+                                            placeholder="State"
+                                            value={this.state.museumState}
+                                            onChange={(e) => this.setState({museumState: e.target.value})}
+                                            style={{width: '25%', marginLeft: '50px'}}
+                                        />
+                                        <InputText
+                                            placeholder="Address"
+                                            value={this.state.museumAddress}
+                                            onChange={(e) => this.setState({museumAddress: e.target.value})}
+                                            style={{width: '25%', marginLeft: '0px'}}
+                                        />
+                                        <InputText
+                                            placeholder="City"
+                                            value={this.state.museumCity}
+                                            onChange={(e) => this.setState({museumCity: e.target.value})}
+                                            style={{width: '25%', marginLeft: '0px'}}
+                                        />
+                                    </span>
+                                    : null
+                            }
+                            {
+                                this.state.service === 'restaurants' ?
+                                    <span>
+                                        <InputText
+                                            placeholder="State"
+                                            value={this.state.restaurantState}
+                                            onChange={(e) => this.setState({restaurantState: e.target.value})}
+                                            style={{width: '25%', marginLeft: '50px'}}
+                                        />
+                                        <InputText
+                                            placeholder="Address"
+                                            value={this.state.restaurantAddress}
+                                            onChange={(e) => this.setState({restaurantAddress: e.target.value})}
+                                            style={{width: '22%', marginLeft: '0px'}}
+                                        />
+                                        <InputText
+                                            placeholder="City"
+                                            value={this.state.restaurantCity}
+                                            onChange={(e) => this.setState({restaurantCity: e.target.value})}
+                                            style={{width: '22%', marginLeft: '0px'}}
+                                        />
+                                        <InputText
+                                            placeholder="Type"
+                                            value={this.state.restaurantType}
+                                            onChange={(e) => this.setState({restaurantType: e.target.value})}
+                                            style={{width: '25%', marginLeft: '0px'}}
+                                        />
+                                    </span>
+                                    : null
+                            }
+
                         </div>
                     </div>
                 </div>

@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c32ce4f6-359f-447e-94e8-bff70e5d6fff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/UI/western-yp/src/Microservice.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/western-yp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/UI/western-yp/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/western-yp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/UI/western-yp/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UI/western-yp/src/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/western-yp/src/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/western-yp/src/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/western-yp/src/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UI/western-yp/src/Microservice.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/western-yp/src/Microservice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/western-yp/src/Register.css" beforeDir="false" afterPath="$PROJECT_DIR$/UI/western-yp/src/Register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/western-yp/src/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/western-yp/src/Register.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,7 +18,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UI/western-yp/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
+            <state relative-caret-position="476">
               <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -36,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/UI/western-yp/src/Home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="78" column="13" lean-forward="true" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
+            <state relative-caret-position="393">
+              <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -66,7 +60,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UI/western-yp/src/Register.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-13">
+            <state relative-caret-position="204">
               <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -78,8 +72,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UI/western-yp/src/Login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="26" selection-end-column="13" />
+            <state relative-caret-position="289">
+              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -90,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UI/western-yp/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+            <state relative-caret-position="34">
+              <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -102,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UI/western-yp/src/Microservice.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1360">
-              <caret line="80" column="31" lean-forward="true" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
+            <state relative-caret-position="317">
+              <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -140,18 +134,18 @@
       <list>
         <option value="$PROJECT_DIR$/UI/western-yp/src/App.css" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" />
-        <option value="$PROJECT_DIR$/UI/western-yp/src/Login.js" />
         <option value="$PROJECT_DIR$/UI/western-yp/src/Register.js" />
         <option value="$PROJECT_DIR$/UI/western-yp/src/Register.css" />
         <option value="$PROJECT_DIR$/UI/western-yp/src/App.js" />
         <option value="$PROJECT_DIR$/UI/western-yp/src/ski-resort-sample.txt" />
         <option value="$PROJECT_DIR$/UI/western-yp/src/Microservice.css" />
-        <option value="$PROJECT_DIR$/UI/western-yp/src/Home.js" />
+        <option value="$PROJECT_DIR$/UI/western-yp/src/Login.js" />
         <option value="$PROJECT_DIR$/UI/western-yp/src/Microservice.js" />
+        <option value="$PROJECT_DIR$/UI/western-yp/src/Home.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
@@ -164,6 +158,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -292,7 +287,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -449,16 +443,23 @@
       <workItem from="1552429200936" duration="168000" />
       <workItem from="1552494168447" duration="598000" />
       <workItem from="1552496407612" duration="18464000" />
+      <workItem from="1552624111402" duration="2072000" />
+      <workItem from="1552776508890" duration="2054000" />
+      <workItem from="1552778865099" duration="900000" />
+      <workItem from="1552944055836" duration="4265000" />
+      <workItem from="1553011089405" duration="462000" />
+      <workItem from="1553133315132" duration="8000" />
+      <workItem from="1553384426876" duration="4784000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42963000" />
+    <option name="totallyTimeSpent" value="57508000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1981402" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18311875" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -475,8 +476,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.16942675" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49928468" visible="true" weight="0.23949045" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007153" side_tool="true" weight="0.23949045" />
       <window_info anchor="bottom" id="REST Client" order="12" weight="0.38598725" />
       <window_info anchor="right" id="Maven" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
@@ -548,26 +549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UI/western-yp/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UI/western-yp/src/Login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="26" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/UI/western-yp/src/App.test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -577,29 +558,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UI/western-yp/src/Register.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/UI/western-yp/src/ski-resort-sample.txt" />
     <entry file="file://$PROJECT_DIR$/UI/western-yp/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
+        <state relative-caret-position="476">
           <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UI/western-yp/src/Register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -611,6 +576,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/UI/western-yp/src/Register.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UI/western-yp/src/Register.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UI/western-yp/src/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UI/western-yp/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/UI/western-yp/src/Microservice.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -618,17 +620,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UI/western-yp/src/ski-resort-sample.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="32673" selection-start-column="32673" selection-end-column="32673" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/UI/western-yp/src/Microservice.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="80" column="31" lean-forward="true" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
+        <state relative-caret-position="317">
+          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -637,8 +632,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/UI/western-yp/src/Home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="78" column="13" lean-forward="true" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
+        <state relative-caret-position="393">
+          <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

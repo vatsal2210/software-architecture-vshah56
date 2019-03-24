@@ -5,7 +5,7 @@ import './Microservice.css';
 class Microservice extends Component {
     constructor(props){
         super(props);
-        this.serviceMap = ['Ski Resorts', 'Restaurants', 'Museums', 'Fortune Companies']
+        this.serviceMap = ['Ski Resorts', 'Restaurants', 'Museums', 'Fortune Companies'];
 
         this.state = {
             params: {},
@@ -20,19 +20,34 @@ class Microservice extends Component {
         console.log("params = ", params);
         this.setState({params: params});
 
-        let url = 'https://ypgateway.mybluemix.net/ski/resort/test?country=' + params.country + '&min=' +
-            params.pricerange.split('-')[0] + '&max=' + params.pricerange.split('-')[1] + '&name=' + params.searchParam;
+        // build searchQuery from params
+        let searchQuery = '';
 
-        console.log("calling: ", url);
+        if (params.serviceName === 'skiResort'){
+            searchQuery = "country=" + params.country + "&resortname=" + params.resortname + "&pricerange="
+            + params.price;
+        }
 
-        fetch(url, {method: 'GET', mode: 'cors', headers: {'Access-Control-Allow-Origin':'*'}, crossDomain:true})
-            .then((res) => res.json())
+
+        console.log("searchQuery = ", searchQuery);
+
+        fetch('http://western01-gateway-pipeline.mybluemix.net/service/search', {
+            method: 'POST',
+            body: {
+                serviceName: "skiResort",
+                searchParam: searchQuery
+            },
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+            mode: 'cors',
+            crossDomain:true,
+        }).then((res) => res.json())
             .then((res) => {
             console.log("res = ", res);
             this.setState({results: res.responseBody, loading: false})
-
-        }).catch((err) => console.log(err));
-
+        }).catch((err) => {
+            console.log("Error retrieving results: ", err);
+            this.setState({loading: false});
+        });
     }
 
     render() {
