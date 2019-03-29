@@ -7,6 +7,8 @@ import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
+import axios from 'axios';
+
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -46,7 +48,7 @@ class Home extends React.Component {
             })
             .then((res) => res.json())
             .then((data) => {
-                console.log("data = ", data);
+                //console.log("data = ", data);
                 let items = [];
                 console.log("Received dropdown items: ", data.responseBody);
                 if (data.responseBody){
@@ -59,7 +61,7 @@ class Home extends React.Component {
                     if (data.responseBody.YP_MUSEUM === 1){
                         items.push({label: 'Museums', value: 'museums'});
                     }
-                    if (data.responseBody.YP_GATEWAY === 1){
+                    if (data.responseBody.YP_COMPANY === 1){
                         items.push({label: 'Fortune Companies', value: 'companies'});
                     }
                 }
@@ -71,6 +73,19 @@ class Home extends React.Component {
                 this.forceUpdate();
 
             }).catch((err) => console.log("error fetching dropdown: ", err));
+
+        // fetch auth API
+        axios({
+            url: 'https://wesetern01-auth.mybluemix.net/user/signin',
+            data: {
+                email: "vatsalshah2210@gmail.com",
+                password: "123456"
+            },
+            method: 'post'
+        }).then((res) => {
+            console.log("res = ", res);
+
+        }).catch((err) => console.log("Error calling auth API: ", err));
     }
 
     handleSearchClick(){
